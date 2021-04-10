@@ -6,8 +6,9 @@ from threading import Thread
 import fileinput
 
 app = Flask(__name__)
-app.debug = True
-
+app.debug = False
+app.config['TESTING'] = False
+app.config[' TEMPLATES_AUTO_RELOAD'] = True
 
 @app.route('/')
 def index():
@@ -16,7 +17,7 @@ def index():
 
     return render_template('app.html', wifi_ap_array = wifi_ap_array, config_hash = config_hash)
 
-
+Fl
 @app.route('/manual_ssid_entry')
 def manual_ssid_entry():
     return render_template('manual_ssid_entry.html')
