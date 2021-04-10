@@ -24,7 +24,7 @@ def wpa_check_activate(wpa_enabled, wpa_key):
 
 	if wpa_enabled == '1' and wpa_active == False:
 		reboot_required = True
-		os.system('cp /usr/lib/raspiwifi/reset_device/static_files/hostapd.conf.wpa /etc/hostapd/hostapd.conf')
+		os.system('sudo cp /usr/lib/raspiwifi/reset_device/static_files/hostapd.conf.wpa /etc/hostapd/hostapd.conf')
 
 	if wpa_enabled == '1':
 		with fileinput.FileInput('/etc/hostapd/hostapd.conf', inplace=True) as hostapd_conf:
@@ -79,15 +79,15 @@ def is_wifi_active():
 def reset_to_host_mode():
 	if not os.path.isfile('/etc/raspiwifi/host_mode'):
 		os.system('aplay /usr/lib/raspiwifi/reset_device/button_chime.wav')
-		os.system('rm -f /etc/wpa_supplicant/wpa_supplicant.conf')
-		os.system('rm -f /home/pi/Projects/RaspiWifi/tmp/*')
-		os.system('rm /etc/cron.raspiwifi/apclient_bootstrapper')
-		os.system('cp /usr/lib/raspiwifi/reset_device/static_files/aphost_bootstrapper /etc/cron.raspiwifi/')
-		os.system('chmod +x /etc/cron.raspiwifi/aphost_bootstrapper')
-		os.system('mv /etc/dhcpcd.conf /etc/dhcpcd.conf.original')
-		os.system('cp /usr/lib/raspiwifi/reset_device/static_files/dhcpcd.conf /etc/')
-		os.system('mv /etc/dnsmasq.conf /etc/dnsmasq.conf.original')
-		os.system('cp /usr/lib/raspiwifi/reset_device/static_files/dnsmasq.conf /etc/')
-		os.system('cp /usr/lib/raspiwifi/reset_device/static_files/dhcpcd.conf /etc/')
-		os.system('touch /etc/raspiwifi/host_mode')
+		os.system('sudo rm -f /etc/wpa_supplicant/wpa_supplicant.conf')
+		os.system('sudo rm -f /home/pi/Projects/RaspiWifi/tmp/*')
+		os.system('sudo rm /etc/cron.raspiwifi/apclient_bootstrapper')
+		os.system('sudo cp /usr/lib/raspiwifi/reset_device/static_files/aphost_bootstrapper /etc/cron.raspiwifi/')
+		os.system('sudo chmod +x /etc/cron.raspiwifi/aphost_bootstrapper')
+		os.system('sudo mv /etc/dhcpcd.conf /etc/dhcpcd.conf.original')
+		os.system('sudo cp /usr/lib/raspiwifi/reset_device/static_files/dhcpcd.conf /etc/')
+		os.system('sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.original')
+		os.system('sudo cp /usr/lib/raspiwifi/reset_device/static_files/dnsmasq.conf /etc/')
+		os.system('sudo cp /usr/lib/raspiwifi/reset_device/static_files/dhcpcd.conf /etc/')
+		os.system('sudo touch /etc/raspiwifi/host_mode')
 	os.system('reboot')
