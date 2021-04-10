@@ -1,5 +1,6 @@
 #!/bin/bash
 
+## When updating these - make sure to copy to /usr/lib/raspiwifi/ where the lives ones exist
 python3 /usr/lib/raspiwifi/reset_device/reset.py &
 
 python3 /usr/lib/raspiwifi/configuration_app/app.py &

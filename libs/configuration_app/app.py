@@ -17,7 +17,7 @@ def index():
 
     return render_template('app.html', wifi_ap_array = wifi_ap_array, config_hash = config_hash)
 
-Fl
+
 @app.route('/manual_ssid_entry')
 def manual_ssid_entry():
     return render_template('manual_ssid_entry.html')
