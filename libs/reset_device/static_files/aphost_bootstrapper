@@ -5,4 +5,12 @@ python3 /usr/lib/raspiwifi/reset_device/reset.py &
 
 python3 /usr/lib/raspiwifi/configuration_app/app.py &
 
-hostapd -dd /etc/hostapd/hostapd.conf &
+## To Avoid Collision of http port with apache
+systemctl stop apache2.service
+
+# In Raspbian 11 on  a Pi Zero This fails as it attampts to start too early
+#hostapd -dd /etc/hostapd/hostapd.conf -t -f /var/log/hostapd.log &
+
+## Modified to starting the service
+systemctl start hostapd.service
+## Also modified /etc/default/hostadp.conf to add Logging: DAEMON_OPTS="-dd -t -f /home/pi/hostapd.log"
